@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>WHIZZYWING Demo and Test</title>
+<script src="whizzywing.js"></script>
+<style>
+h1, h2, h3, h4 {color:purple}
+p,li,td,blockquote {font-family:sans-serif; font-size:12px}
+.wz_formatbar {background:#cfc; padding:1px; border:1px solid darkgreen}
+</style>
+<script> //Not required if using default controls only
+//Functions used by color dropdown
+ function hue(c){return '<font color='+c+'>'}
+ function clr(c){return hue(c)+'ABC</font>'}
+//Custom controls for toolbar
+ _.control['color']=_.drop('<big style="color:red">&#9632;</big><big style="color:#0c0">&#9632;</big><big style="color:blue">&#9632;</big> &nabla;',
+[clr('red'),clr('orange'),clr('yellow'),clr('green'),clr('blue'),clr('purple'),clr('violet'),clr('white'),clr('silver'),clr('gray'),clr('black')],
+[hue('red'),hue('orange'),hue('yellow'),hue('green'),hue('blue'),hue('purple'),hue('violet'),hue('white'),hue('silver'),hue('gray'),hue('black')]);
+_.control['bold']=_.btn(_.tr('Bold'),'bold','<b style="font-family:serif">A</b>'),
+_.control['italic']=_.btn(_.tr('Italic'),'italic','<i style="font-family:serif">A</i>'),
+_.control['number']=_.btn(_.tr('Number'),'insertorderedlist','1.'),
+_.control['bullet']=_.btn(_.tr('Bullet'),'insertunorderedlist','<b>&bull;</b>');
+//For a dropdown menu:        //Title
+_.control['font']=_.drop('<i style=font-family:serif>Font</i>',
+//HTML for each item displayed: comma separated array
+['<font face=\'Arial,sans-serif\'>Arial</font>','<font face=\'Arial Black\'>Arial Black</font>','<font face=\'Comic Sans MS\'>Comic Sans</font>','<font face=\'Georgia,serif\'>Georgia</font>','<font face=\'monospace\'>Monospace</font>','<font face=\'Impact\'>Impact</font>','<font face=\'Verdana\'>Verdana</font>'],
+//HTML to insert when clicked (or execCommand: http://www.quirksmode.org/dom/execCommand.html)
+['<font face=Arial,sans-serif>','<font face=\\\'Arial Black\\\'>','<font face=\\\'Comic Sans MS\\\'>','<font face=Georgia,serif>','<font face=monospace>','<font face=Impact>','<font face=Verdana>']);
+
+                 //_.btn(Title,Command(for execcommand) or HTML<tag>, button HTML, [parameter for xC])
+_.control['lorem']=_.btn('Lorem','insertHTML','Lorem',' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum and all that old twaddle. ');
+  _.control['red']=_.btn('Red','<font color=red>','<b style=\"color:red\">A</b>'); //code for "Red" button
+  _.control['green']=_.btn('Green','<font color=green>','<b style=\"color:green\">A</b>');
+  _.control['blue']=_.btn('Blue','<font color=blue>','<b style=\"color:blue\">A</b>');
+</script>
+</head>
+<body>
+<form method="post" action="http://unverse.net/whizzed.php">
+<h3>Here's a textarea</h3>
+<textarea class="WYSIWYG" name="John" style="height:400px;width:500px" rows=5 cols=70>
+<img src="http://unverse.net/images/fly.gif" alt=" Rich text editing on the fly " style="float:right" />
+<p><big>the</big> <small>small</small>, <em>fast</em>, <strong>easy</strong> <abbr title="What You See Is What You Get">WYSIWYG</abbr> editor.&nbsp;</p>
+<ul>
+ <li><strong>Smaller</strong> than the titans - less than 20k for core module.</li>
+ <li><strong>Dead easy</strong> to implement.</li>
+ <li><strong>Uncluttered</strong> - just 9 items on the standard toolbar, yet dozens of functions.</li>
+ <li><strong>Blisteringly Fast - </strong>will typically load even before your images have rendered on the page.</li>
+ <li><strong>Rich features</strong> - headings, lists, blockquotes, tables, links, text-wrapped images, <strong>bold</strong>, <em>italic</em>, <u>underline</u>, <del>delete</del>, <sub>sub-</sub> and <sup>super-</sup>script.</li>
+ <li><strong>User friendly</strong> - avoids excessive use of coding terms in the user interface (href, vspace, target, etc.)</li>
+ <li><strong>Unobtrusive</strong> - the toolbar can be hidden until needed.</li>
+ <li><strong>Sensible output</strong> - generates standard, cross-browser HTML, not littered with useless spans or classes.</li>
+ <li><strong>Easy to extend</strong>- add your own controls or replace the standard ones using the simple API.</li>
+ <li><strong>Translatable</strong>.</li>
+</ul>
+<p>Click an image and click &lt;&lt; or &gt;&gt; to float it to left or right. = will remove the float.</p>
+<p>Click a list item (bullet or number) and click &gt;&gt; to indent it, &lt;&lt; to unindent it.</p>
+</textarea>
+
+<p>Test: 
+<button type="button" onclick="alert(document.getElementById('First').value)">What's in the above textarea now?</button>
+<button type="button" onclick="_.xC('insertHTML',' <b>Lorem ipsum</b> dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum <i>and all that old twaddle</i>. ')">Add more text</button>  </p>
+
+<h3>Now an &lt;input title="font bold italic red green blue bullet number image"  type="hidden"&gt;: <button type="button" onclick="alert(document.getElementById('Second').value)">Source</button></h3>
+<input title="font bold italic red green blue bullet number image" type="hidden" name="Second" value="<p>This was an input (type=hidden), not a textarea. Using a hidden input instead of a textarea will cut down on spam from bots. <br>You can't use the Whizzywig source view on this type of input.</p><p>The toolbar is tailored using the title attribute.</p>" class="WYSIWYG" />
+
+<h3>and another textarea with a tailored toolbar: title="bullet link left right paragraph source"</h3>
+<textarea class="WYSIWYG" title="bullet link left right paragraph source" name="Third" rows=5 cols=70>
+<h3>WYSIWYG</h3>
+<p>WYSIWYG - What You See Is What You Get - implies a user interface that allows the user to view something very similar to the end result while the document is being created. In general WYSIWYG implies the ability to directly manipulate the layout of a document without having to type or remember names of layout commands.</p>
+</textarea>
+
+<input type="submit" value="OK" />
+
+</form>
+<p>the end. </p>
+</body>
+</html>

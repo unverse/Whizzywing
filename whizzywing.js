@@ -1,6 +1,6 @@
-//Whizzywing Rich Text Editor. © 2011-12 John Goodman - www.unverse.net - Licence: MIT/GPL 
+//Whizzywing Rich Text Editor. © 2011-12 John Goodman - www.whizzywing.com - Licence: MIT/GPL 
 
-var wz_version='Whizzywing 111213',isFF=navigator.product=='Gecko',isIE=/*@cc_on!@*/0;
+var wz_version='Whizzywing 120106',isFF=navigator.product=='Gecko',isIE=/*@cc_on!@*/0;
 var _=function(){
 var wn=window,dc=document,db,de,ov,pp,cb,ed,id,sel,rng,papa,txt,trl,eds=[];
 if(!db){dc.write('<style>'+
@@ -303,9 +303,9 @@ wys:function(ta){
   tbc=tbc+'<a title="'+wz_version+'">&nbsp;</a>';
   tb=_.ib('DIV',tbc,ed);
   tb.id="wzbar_"+ta.id;tb.className='wz_formatbar'; tb.unselectable='on';
-  if(wn.getSelection){//u/s in IE6
+  if(wn.getSelection){//not in IE6!
    tb.title=_.tr("Double click to toggle full screen");
-   _.e(tb,'dblclick',function(e){var s=db.style,o=s.overflow,v=s.visibilty;cl=tb.parentNode.className;tb.parentNode.className=(cl=="wz_full")?"wz_editor":"wz_full";if(cl=="wz_full"){s=o='hidden'}else{s=o='visible'}_.foc()});//if(e.preventDefault){e.preventDefault()};wn.scrollTo(0,0)
+   _.e(tb,'dblclick',function(e){if(tb.parentNode.className=="wz_full"){db.style.overflow='visible';tb.parentNode.className="wz_editor"} else {db.style.overflow='hidden';tb.parentNode.className="wz_full"}_.foc()});
   }
   _.e(tb,'mouseup',function(e){if(e.preventDefault){e.preventDefault()}});
   if(isFF){dc.execCommand('styleWithCSS',false,false);dc.execCommand('enableInlineTableEditing',false,false)}

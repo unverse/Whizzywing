@@ -1,8 +1,11 @@
+WHIZZYWING
+ is a lightweight (7k gzipped) WYSIWYG rich text editor in JavaScript. It replaces elements such as textareas with a contenteditable (as per HTML5) div with a tailorable formatting toolbar. It returns sane HTML into the replaced element. It works in modern desktop browsers - including Chrome, Firefox, Safari, Opera, Chromium - with contenteditable support and Internet Explorer from IE6 onwards.
+ 
 KNOWN ISSUES:
+ Full screen option not available in IE6.
 
-TODO: 
-Enter to P (not DIV as Chrome, or <br><br> as FF) 
-ajax save form helper
+TODO:  
+ajax save, form helper
 
 CHANGES: YYMMDD
 110804 added <pre>; _.pop def window width, height -50; _wz.foc in xC; no align att;
@@ -39,3 +42,4 @@ Tested IE6, Chromium 14.0, Chrome 14.0, Firefox 3.6, Firefox 7.0.1, Safari
 111207 Force P only if wn.wz_force_p
 111208 cleanpaste(); abandoned wn.wz_force_p and code force P in clean();
 111213: kb: if(!e){e=wn.event}
+120106 fix fullscreen: body overflow = hidden
