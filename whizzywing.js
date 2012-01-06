@@ -1,44 +1,5 @@
-//Whizzywing Rich Text Editor. © 2011 John Goodman - www.unverse.net - Licence: MIT/GPL 
+//Whizzywing Rich Text Editor. © 2011-12 John Goodman - www.unverse.net - Licence: MIT/GPL 
 
-//BUG: []None?
-
-//TODO: Enter to P (not DIV as Chrome, or <br><br> as FF) //Clean up styles on paste
-//ajax save //form helper
-//DONE:
-//110804 added <pre>; _.pop def window width, height -50; _wz.foc in xC; no align att;
-//110809 Try foc, whereAmI, in _; Moved docReady() content into _.go();(b) ib,btn >_;
-//110817 x mark(can't clear) +big; drop() replaces select/op; underline replaces del;
-//110818 fixed stylewithcss fail; no _wz, everything in _; &nabla; tbl+nbsp;
-//110820 margin fix for dr>blockquote;
-//110822 fixed blockquote in IE; trying to fix dropdown for IE6 using "zoom:1;*display:inline"; document>dc,window>wn;
-//110823 x wz_control; Stop flicker IE 6 dr: align top for buts and dr; ditch "zoom:1;*display:inline" and make wz_dp a span (ie6/7 does support inline-block but only on ; IE wont allow A in BUT so isIE?<U blue>:<A> on Link. 
-//110824 XMLSerializer to get selHTM; del;
-//110831 whizzywig() & makeWhizzyWig() but problems source
-//110902 Return always starts a new para - but get extra BR in FF
-//110907 <= = => ; <p>unBlockquote</p>
-//110908 CreateLink w/o selHTM; ctrls default & - ; simpler tbl()
-//111024 doDbl(); iH(); simpler tbl(); xp > xC; tr paragraph character; x bold italic bullet number; x source from default; clean x xmlns, x META; replace IMG src if node=IMG;
-//111025 clean x rep DOM; Capitalize alt;
-//111026 x font/span bug; htm.normalize(); btn colors; isFF, backcolor; removeformat x styles; paragraph/character>block/text; .wz_formatbar {display:none}>togg;le toolbar to active ed;
-//111027 doubleclick toolbar for full screen; unwys(ta.id)>textarea and wys(ta.id);
-//Tested IE6, Chromium 14.0, Chrome 14.0, Firefox 3.6, Firefox 7.0.1, Safari 
-//+ fix dbl click link bug.
-//111028 foc after full; fix align bug in clean; x selHTM in +form; id; CTRL+Shift+H
-//111030 fix cancel link
-//111031 CTRL+L,M,H,U; _.frm>img,a,tbl,insert; th; x src if !TA;
-//111101 min clean align; x ldMsg;
-//111102 Fix kb() for IE6; focus frm(); Remove img; Remove part of link/link from sel;
-//111104 x form inside form!
-//111107 wzbar_id, wzbox_id,force P+DIV>P >if(trl..)P; pass node or string to clean; txt2p in clean
-//111108 fixed bug P+ IE9 w data.match(/\S/);preserve rel address for images/links//Whizzywing Editor.
-//111109 Dropped <code><big><small>; logic in clean; BR\n; xStyle on CTRL+SP
-//111110 x _.rep; xStyle retains valid align[];fixed scroll bug fullscreen; fixed 'this' broke IE6;PUBLISHED
-//111111 bt[] e.g. _.bt.link='<img src="link.png"> to tailor std buttons
-//111116 Experiment:fontname,<tag> to insert arbitrary tags???
-//111122 Ensure table cells have at least &nbsp; fix resize bug(-fb.c[lientHeight])
-//111207 Force P only if wn.wz_force_p
-//111208 cleanpaste(); abandoned wn.wz_force_p and code force P in clean();
-//111213: kb: if(!e){e=wn.event}
 var wz_version='Whizzywing 111213',isFF=navigator.product=='Gecko',isIE=/*@cc_on!@*/0;
 var _=function(){
 var wn=window,dc=document,db,de,ov,pp,cb,ed,id,sel,rng,papa,txt,trl,eds=[];
@@ -350,7 +311,7 @@ wys:function(ta){
   if(isFF){dc.execCommand('styleWithCSS',false,false);dc.execCommand('enableInlineTableEditing',false,false)}
 },//wys
 unwys:function(id){var bx=_.$('wz_'+id).parentNode; bx.parentNode.replaceChild(_.$(id),bx)},
-go:function(){if(!db){db=dc.body;de=dc.documentElement?dc.documentElement:db;pp=_.ce('wz_pop'); ov=_.ce('wz_ov'); ov.onclick=_.xp;_.rsz(); ov.style.filter='alpha(opacity=70)'; _.e(wn,'resize',_.rsz); cb=_.ce('wz_cb'); cb.contentEditable="true";
+go:function(){if(!db){db=dc.body;de=dc.documentElement?dc.documentElement:db;pp=_.ce('wz_pop'); ov=_.ce('wz_ov'); ov.onclick=_.xp;_.rsz(); ov.style.filter='alpha(opacity=70)'; _.e(wn,'resize',_.rsz);
  _.all(_.c('WYSIWYG'),_.wys); _.all(_.c('wz_tc'),function(c){_.h(c)});
  if(wn.docReady){docReady()}}}
 };
